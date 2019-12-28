@@ -9,13 +9,6 @@ pipeline {
     stage('build') {
       steps {
         sh 'python --version'
-        retry(3){
-          sh "chmod +x app.py"
-          sh "./app.py"
-        }
-        timeout(time: 10, unit: 'SECONDS') {
-                  sh './app.py'
-              }
       }
     }
 
