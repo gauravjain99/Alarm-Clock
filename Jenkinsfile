@@ -13,6 +13,9 @@ pipeline {
           sh "chmod +x app.py"
           sh "./app.py"
         }
+        timeout(time: 10, unit: 'SECONDS') {
+                  sh './app.py'
+              }
       }
     }
 
