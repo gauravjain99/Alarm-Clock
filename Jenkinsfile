@@ -10,6 +10,7 @@ pipeline {
       steps {
         sh 'python --version'
         retry(3){
+          sh "chmod +x app.py"
           sh "./app.py"
         }
       }
