@@ -16,7 +16,7 @@ pipeline {
 
   post {
       always {
-          junit'build/reports/**/*.xml'
+          deleteDir()
       }
       success {
           echo 'This will run only if successful'
