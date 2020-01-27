@@ -6,7 +6,7 @@ pipeline {
         stage('Deploy - Staging') {
             steps {
                 sh 'ls'
-                sh 'ls'
+                sh 'echo me'
             }
         }
 
