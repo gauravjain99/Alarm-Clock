@@ -1,22 +1,9 @@
-pipeline{
+pipeline {
     agent any
-
-    stages{
-        stage('Build'){
-            steps{
-                echo "Building"
-            }
-        }
-
-        stage('Test') {
+    stages {
+        stage('Example') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-                i
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             }
         }
     }
