@@ -1,9 +1,16 @@
+Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
+    environment { 
+        CC = 'clang'
+    }
     stages {
         stage('Example') {
+            environment { 
+                DEBUG_FLAGS = '-g'
+            }
             steps {
-                echo "Running ${BUILD_NUMBER} on ${JENKINS_URL}"
+                sh 'printenv'
             }
         }
     }
