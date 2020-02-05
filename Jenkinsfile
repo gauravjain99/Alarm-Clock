@@ -7,7 +7,7 @@ pipeline{
                 docker { image 'ubuntu:latest'}
             }
             steps{
-                sh 'cat /etc/os_release'
+                sh 'uname -a'
             }
         }
 
@@ -16,7 +16,7 @@ pipeline{
                 docker{ image 'centos:latest'}
             }
             steps{
-                sh 'cat  /etc/os_release'
+                sh 'uname -a'
             }
         }
     }
