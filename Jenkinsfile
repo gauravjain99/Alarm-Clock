@@ -1,22 +1,10 @@
-pipeline{
-    agent none
-
-    stages{
-        stage('Test'){
-            agent{
-                docker { image 'ubuntu:latest'}
-            }
-            steps{
-                sh 'uname -a'
-            }
-        }
-
-        stage ('build'){
-            agent {
-                docker{ image 'centos:latest'}
-            }
-            steps{
-                sh 'uname -a'
+pipeline {
+    agent { dockerfile true }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+                sh 'svn --version'
             }
         }
     }
