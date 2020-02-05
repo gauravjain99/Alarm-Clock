@@ -1,12 +1,22 @@
 pipeline{
-    agent {
-        docker { image 'python:latest'}
-    }
+    agent none
 
     stages{
         stage('Test'){
+            agent{
+                docker { image 'ubuntu:latest'}
+            }
             steps{
-                sh 'python --version'
+                sh 'cat /etc/os_release'
+            }
+        }
+
+        stage ('build'){
+            agent {
+                docker{ image 'centos:latest'}
+            }
+            steps{
+                sh 'cat  /etc/os_release'
             }
         }
     }
