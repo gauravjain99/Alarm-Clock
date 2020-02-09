@@ -14,15 +14,15 @@ pipeline {
     stages {
         stage('Example') {
             steps {
-                echo "Hello ${params.PERSON}"
+                echo "Hello ${PERSON}"
 
-                echo "Biography: ${params.BIOGRAPHY}"
+                echo "Biography: ${BIOGRAPHY}"
 
-                echo "Toggle: ${params.TOGGLE}"
+                echo "Toggle: ${TOGGLE}"
 
-                echo "Choice: ${params.CHOICE}"
+                echo "Choice: ${CHOICE}"
 
-                echo "Password: ${params.PASSWORD}"
+                echo "Password: ${PASSWORD}"
             }
         }
     }
