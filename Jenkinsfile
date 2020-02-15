@@ -23,12 +23,6 @@ pipeline {
           }
         }
 
-        stage('') {
-          steps {
-            sh 'jai ho'
-          }
-        }
-
       }
     }
 
