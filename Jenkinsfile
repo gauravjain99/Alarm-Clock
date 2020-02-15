@@ -1,5 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'centos:latest'
+      args 'ls'
+    }
+
+  }
   stages {
     stage('Example') {
       parallel {
