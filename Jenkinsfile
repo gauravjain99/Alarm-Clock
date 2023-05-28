@@ -1,5 +1,3 @@
-def scannerHome = tool name: 'SonarScanner'
-
 pipeline {
     agent any
     stages {
@@ -10,6 +8,7 @@ pipeline {
         }
         stage('build && SonarQube analysis') {
             steps {
+                def scannerHome = tool name: 'SonarScanner'
                 withSonarQubeEnv('gaurav-sonar') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
