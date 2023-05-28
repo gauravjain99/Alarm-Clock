@@ -3,7 +3,7 @@ node {
     git 'https://github.com/gauravjain99/Alarm-Clock'
   }
   stage('SonarQube analysis') {
-    def scannerHome = tool 'SonarScanner';
+    def scannerHome = tool 'gaurav-sonar';
     withSonarQubeEnv('gaurav-sonar') { // If you have configured more than one global server connection, you can specify its name
       sh "${scannerHome}/bin/sonar-scanner"
     }
