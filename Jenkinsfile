@@ -5,13 +5,12 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                sh 'echo "hello"'
+                git url: 'https://github.com/gauravjain99/Alarm-Clock'
             }
         }
         stage('build && SonarQube analysis') {
             steps {
                 withSonarQubeEnv('gaurav-sonar') {
-                    // Optionally use a Maven environment you've configured already
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
