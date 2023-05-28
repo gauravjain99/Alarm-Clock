@@ -1,27 +1,21 @@
-pipeline {
-    agent any
-    stages {
-        stage('SCM') {
-            steps {
-                git url: 'https://github.com/gauravjain99/Alarm-Clock'
-            }
-        }
-        stage('build && SonarQube analysis') {
-            steps {
-                def scannerHome = tool name: 'SonarScanner'
-                withSonarQubeEnv('gaurav-sonar') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-            }
-        }
-        stage("Quality Gate") {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+node {
+  stage('SCM') {
+    git 'https://github.com/gauravjain99/Alarm-Clock'
+  }
+  stage('SonarQube analysis') {
+    def scannerHome = tool 'SonarScanner 4.0';
+    withSonarQubeEnv('gaurav-sonar') { // If you have configured more than one global server connection, you can specify its name
+      sh "${scannerHome}/bin/sonar-scanner"
     }
+  }
+}
+
+// No need to occupy a node
+stage("Quality Gate"){
+  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+    if (qg.status != 'OK') {
+      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+    }
+  }
 }
