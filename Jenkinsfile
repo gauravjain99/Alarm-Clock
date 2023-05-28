@@ -1,4 +1,4 @@
-def scannerHome = tool 'SonarScanner';
+def scannerHome = tool name: 'SonarScanner'
 
 pipeline {
     agent any
